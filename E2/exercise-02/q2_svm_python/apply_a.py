@@ -47,7 +47,8 @@ plt.ylim(ymin-ymargin, ymax+ymargin)
 
 # Plot the slack points
 if sum(slack) > 0:
-    plt.plot(train['data'][slack][:,0], train['data'][sv][:,1], facecolors='none', edgecolors='y', marker = 'o')
+    # plt.plot(train['data'][slack][:,0], train['data'][sv][:,1], facecolors='none', edgecolors='y', marker = 'o')
+    plt.plot(train['data'][slack][:,0], train['data'][sv][:,1])
 
 x = np.arange(-xmax,xmax,0.001)
 y = -(w[0] *x + b)/w[1]
@@ -69,7 +70,7 @@ print('Accuracy on test data with C = {0}: \t {1}\n'.format(C, accuracy))
 # Plot the results on test set
 plt.subplot()
 plt.title('Test Set')
-correct = 0    
+correct = 0
 incorrect = 0
 
 plt.plot(x, y, 'k-', linewidth = 0.75)  # class border
