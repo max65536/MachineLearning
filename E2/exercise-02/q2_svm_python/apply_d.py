@@ -14,13 +14,17 @@ test.update({'data': np.loadtxt('lc_test_data.dat').T})
 test.update({'label': np.loadtxt('lc_test_label.dat').T})
 
 # Kernel SVM
-[alpha, sv, b, _, slack]  = svmkern(train['data'], train['label'], C2, norm)
+[alpha, sv, b, result, slack]  = svmkern(train['data'], train['label'], C2, norm)
+# print('alpha=',alpha)
+# print('sv=',sv)
+# print('b=',b)
 
 # Run the classifier on the test data
 # Unlike the linear SVM (which only needs the computed weight w and bias b),
 # the kernel SVM requires a subset of the training dataset (the support vectors)
 # to perform classification on a test dataset.
-result = np.sign((kern(test['data'], train['data'][:,sv],norm).T).dot(alpha[sv].T*train['label'][sv])+ b)
+
+# result = np.sign((kern(test['data'], train['data'][:,sv],norm).T).dot(alpha[sv==1].T*train['label'][sv])+ b)
 
 # Accuracy on test data
 accuracy = len(result[result==test['label']])/len(test['label'])
